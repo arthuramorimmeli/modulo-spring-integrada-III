@@ -44,5 +44,9 @@ public class TableServiceImplement implements CrudInterface<Table> {
         return RestauranteApplication.getTables().get(id);
     }
 
+    public List<Table> findByName(String tableName) {
+        return RestauranteApplication.getTables().values().stream().filter(table -> table.getName().equals(tableName)).collect(Collectors.toList());
+    }
+
 
 }

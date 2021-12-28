@@ -43,4 +43,13 @@ public class TableController{
             return ResponseEntity.badRequest().body(null);
         }
     }
+
+    @GetMapping(value = "/{tableName}")
+    public ResponseEntity<List<Table>> getById(@PathVariable String tableName) {
+        try {
+            return ResponseEntity.ok(tableServiceImplement.findByName(tableName));
+        } catch (Exception e) {
+            return ResponseEntity.badRequest().body(null);
+        }
+    }
 }

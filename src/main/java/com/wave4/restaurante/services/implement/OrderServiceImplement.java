@@ -63,4 +63,8 @@ public class OrderServiceImplement implements CrudInterface<Order> {
         return RestauranteApplication.getOrders().stream().filter(order -> order.getTable().getId().equals(id)).collect(Collectors.toList());
     }
 
+    public List<Order> findOrdersByTableName(String name) {
+        return RestauranteApplication.getOrders().stream().filter(order -> order.getTable().getName().equals(name)).collect(Collectors.toList());
+    }
+
 }
