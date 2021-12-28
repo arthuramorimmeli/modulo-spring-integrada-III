@@ -1,9 +1,6 @@
 package com.wave4.restaurante.services.implement;
 
 import com.wave4.restaurante.RestauranteApplication;
-import com.wave4.restaurante.dtos.AddDishOrderDTO;
-import com.wave4.restaurante.dtos.DishDTO;
-import com.wave4.restaurante.dtos.OrderDTO;
 import com.wave4.restaurante.entities.Dish;
 import com.wave4.restaurante.entities.Order;
 import com.wave4.restaurante.services.interfaces.CrudInterface;
@@ -14,17 +11,16 @@ import java.util.List;
 import java.util.stream.Collectors;
 
 @Service
-public class OrderServiceImplement implements CrudInterface<Order, OrderDTO> {
+public class OrderServiceImplement implements CrudInterface<Order> {
 
     @Override
-    public Order create(OrderDTO orderDTO) {
-        Order order = orderDTO.convert();
+    public Order create(Order order) {
         RestauranteApplication.getOrders().add(order);
         return order;
     }
 
     @Override
-    public Order edit(Order order, OrderDTO orderDTO) {
+    public Order edit(Order order) {
         return null;
     }
 
@@ -50,9 +46,9 @@ public class OrderServiceImplement implements CrudInterface<Order, OrderDTO> {
         return RestauranteApplication.getOrders().stream().filter(order -> order.getId().equals(id)).collect(Collectors.toList()).get(0);
     }
 
-    public boolean addDishOnOrder(AddDishOrderDTO addDishOrderDTO) {
-        if (addDishOrderDTO.getOrderId() != null && addDishOrderDTO.getDishId() != null) {
-            Dish dish = RestauranteApplication.getDishes().get(addDishOrderDTO.getDishId());
+    public boolean addDishOnOrder(Long dishId, Long orderId) {
+        if (orderId != null && dishId != null) {
+            Dish dish = RestauranteApplication.getDishes().get(dishId);
             RestauranteApplication.getOrders().forEach(order -> {
                 if (order.getId().equals(dish.getId())) {
                     order.addDishOnTable(dish);

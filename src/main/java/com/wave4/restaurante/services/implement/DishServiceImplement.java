@@ -1,7 +1,6 @@
 package com.wave4.restaurante.services.implement;
 
 import com.wave4.restaurante.RestauranteApplication;
-import com.wave4.restaurante.dtos.DishDTO;
 import com.wave4.restaurante.entities.Dish;
 import com.wave4.restaurante.services.interfaces.CrudInterface;
 import org.springframework.stereotype.Service;
@@ -10,17 +9,16 @@ import java.util.ArrayList;
 import java.util.List;
 
 @Service
-public class DishServiceImplement implements CrudInterface<Dish, DishDTO> {
+public class DishServiceImplement implements CrudInterface<Dish> {
 
     @Override
-    public Dish create(DishDTO dishDTO) {
-        Dish dish = dishDTO.convert();
+    public Dish create(Dish dish) {
         RestauranteApplication.getDishes().put(dish.getId(), dish);
         return dish;
     }
 
     @Override
-    public Dish edit(Dish dish, DishDTO dishDTO) {
+    public Dish edit(Dish dish) {
         return null;
     }
 

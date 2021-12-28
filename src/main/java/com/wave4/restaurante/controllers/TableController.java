@@ -19,7 +19,7 @@ public class TableController{
     @PostMapping
     public ResponseEntity<Table> create(@RequestBody TableDTO tableDTO) {
         try {
-            return ResponseEntity.ok(tableServiceImplement.create(tableDTO));
+            return ResponseEntity.ok(tableServiceImplement.create(tableDTO.convert()));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
         }

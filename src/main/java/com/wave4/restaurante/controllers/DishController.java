@@ -1,9 +1,7 @@
 package com.wave4.restaurante.controllers;
 
 import com.wave4.restaurante.dtos.DishDTO;
-import com.wave4.restaurante.dtos.OrderDTO;
 import com.wave4.restaurante.entities.Dish;
-import com.wave4.restaurante.entities.Order;
 import com.wave4.restaurante.services.implement.DishServiceImplement;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
@@ -21,7 +19,7 @@ public class DishController {
     @PostMapping
     public ResponseEntity<Dish> create(@RequestBody DishDTO dishDTO) {
         try {
-            return ResponseEntity.ok(dishServiceImplement.create(dishDTO));
+            return ResponseEntity.ok(dishServiceImplement.create(dishDTO.convert()));
         } catch (Exception e) {
             return ResponseEntity.badRequest().body(null);
         }

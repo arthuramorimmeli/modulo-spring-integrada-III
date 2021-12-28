@@ -1,5 +1,6 @@
 package com.wave4.restaurante.entities;
 
+import com.wave4.restaurante.enums.OrderStatus;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.Setter;
@@ -16,6 +17,7 @@ public class Order {
     private Table table;
     private List<Dish> dishes;
     private Double totalConsumed;
+    private OrderStatus status;
 
     public void addDishOnTable(Dish dish) {
         this.dishes.add(dish);

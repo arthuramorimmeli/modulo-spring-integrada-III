@@ -37,7 +37,7 @@ public class OrderController {
     @PutMapping(value = "/add-dish")
     public ResponseEntity<Boolean> addDishOnOrder(@RequestBody AddDishOrderDTO addDishOrderDTO) {
         try {
-            boolean added = orderServiceImplement.addDishOnOrder(addDishOrderDTO);
+            boolean added = orderServiceImplement.addDishOnOrder(addDishOrderDTO.getDishId(), addDishOrderDTO.getOrderId());
             return ResponseEntity.ok(added);
 
         } catch (Exception e) {
